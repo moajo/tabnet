@@ -10,7 +10,7 @@ from collections.abc import Sequence
 from itertools import chain
 
 from scipy.sparse import issparse
-from scipy.sparse.base import spmatrix
+from scipy.sparse import spmatrix
 from scipy.sparse import dok_matrix
 from scipy.sparse import lil_matrix
 import scipy.sparse as sp
