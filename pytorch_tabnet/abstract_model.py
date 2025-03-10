@@ -451,7 +451,7 @@ class TabModel(BaseEstimator):
                     loaded_params["init_params"]["device_name"] = self.device_name
                 with z.open("network.pt") as f:
                     try:
-                        saved_state_dict = torch.load(f, map_location=self.device)
+                        saved_state_dict = torch.load(f, map_location=self.device, weights_only=True)
                     except io.UnsupportedOperation:
                         # In Python <3.7, the returned file object is not seekable (which at least
                         # some versions of PyTorch require) - so we'll try buffering it in to a
@@ -459,6 +459,7 @@ class TabModel(BaseEstimator):
                         saved_state_dict = torch.load(
                             io.BytesIO(f.read()),
                             map_location=self.device,
+                            weights_only=True,
                         )
         except KeyError:
             raise KeyError("Your zip file is missing at least one component")
